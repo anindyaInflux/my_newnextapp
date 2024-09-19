@@ -1,25 +1,27 @@
-import mongoose from "mongoose";
+// lib/dbConnect.js
+import mongoose from 'mongoose';
+// import dotenv from 'dotenv';
 
+// dotenv.config(); // Load environment variables
 
-export async function connect() {
-    try {
-        mongoose.connect(process.env.MONGO_URI);
-        const connection = mongoose.connection;
+const connection = {}; 
+console.log(process.env,"process")
 
-        connection.on('connected', () => {
-            console.log('MongoDB connected successfully');
-        })
-
-        connection.on('error', (err) => {
-            console.log('MongoDB connection error. Please make sure MongoDB is running. ' + err);
-            process.exit();
-        })
-
-    } catch (error) {
-        console.log('Something goes wrong!');
-        console.log(error);
-        
-    }
-
-
+if (!process.env.MONGO_URI) {
+  throw new Error('MONGO_URI environment variable is not defined');
 }
+
+async function dbConnect() {
+  if (connection.isConnected) {
+    return;
+  }
+
+  const db = await mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  connection.isConnected = db.connections[0].readyState;
+}
+
+export default dbConnect;

@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 export default function Signup() {
   const router = useRouter();
@@ -102,6 +103,7 @@ export default function Signup() {
       >
         {loading ? "Submitting..." : "Signup"}
       </button>
+      <Link href="/login">Go To Login</Link>
     </div>
   );
 }

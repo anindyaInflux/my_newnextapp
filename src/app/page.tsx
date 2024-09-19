@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Siginup from "./signup/page";
 
+
 export default function Home() {
   return (
     <html lang="en">
@@ -10,6 +11,7 @@ export default function Home() {
 
       </header>
       <main>
+ 
         <Siginup/>
       </main>
     </body>

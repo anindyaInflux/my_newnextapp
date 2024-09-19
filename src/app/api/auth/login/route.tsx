@@ -1,10 +1,10 @@
-import { connect } from "@/app/utils/db/dbconfig";
+import dbConnect from "@/app/utils/db/dbconfig";
 import { NextRequest, NextResponse } from "next/server";
 import User from "../../../../../models/usedrModel";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-connect();
+dbConnect();
 
 export async function POST(request: NextRequest) {
   try {

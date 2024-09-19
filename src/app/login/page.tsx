@@ -22,11 +22,12 @@ export default function login() {
                 const response = await axios.post("/api/auth/login",user)
                 console.log("responce==>",response.data);
                 toast.success("Login success");
-                router.push("/dashbord")
-            } catch (error:any) {
+                router.push("/usertable")
+            }  catch (error: any) {
                 console.log("Login failed", error.message);
-                toast.error(error.message);
-                
+          
+                // Show error toast
+                toast.error("Login failed: " + error.message);
             }finally{
                 setLoading(false)
             }
